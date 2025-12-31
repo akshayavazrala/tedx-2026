@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Tickets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1;
+        }
+        .btn {
+            background: rgba(0, 0, 0, 0.6); /* Black with transparency */
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            width: 250px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        .btn:hover {
+            background: rgba(0, 0, 0, 0.8); /* Darker black on hover */
+            transform: scale(1.05);
+        }
+
+        /* Responsive font sizes */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .btn {
+                font-size: 16px;
+                width: 200px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="img/media/vdcp-vmake.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <h1>Secure Your Spot Today!</h1>
+    <div class="btn-container">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSDiPhfzL1wctwfq0YPwKH-wP3ITQTiR-1G6q0BdFvr4vjuw/viewform?usp=dialog" class="btn">Registration for BVRITH students</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0nyhidRESn_2VEg2SkeKj6Maghd1Y7BBnrr153vCO6S1A9Q/viewform?usp=dialog" class="btn">Registration for Others</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>TEDxBVRITHyderabad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="tedxbvrith, tedx, tedx talks, hyderabad, talks, speakers" name="keywords">
+    <meta content="TEDx is an international community that organizes TED-style events anywhere and everywhere"
+        name="description">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
+        rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+        crossorigin="anonymous"></script>
+
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            /* Adjust this value based on the height of your navbar */
+        }
+
+        h2 {
+            color: red;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: bold !important;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-grid iframe {
+            width: 100%;
+            height: 280px;
+            border: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .video-grid iframe:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 30px 0;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-grid iframe {
+                height: 250px;
+                /* Adjusted for smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body id="body" name="body">
+    <div id="navbar-container"></div>
+    <script>
+        function loadNavbar() {
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+        }
+        loadNavbar();
+    </script>
+    <div class="main-content">
+        <div class="container">
+            <br>
+            <br>
+            <h2>Past Season Highlights</h2>
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="video-grid">
+                <iframe src="https://www.youtube.com/embed/m84SDEhsqX8" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/wpWRUJn0IpU" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/6NhL5s_JWD4" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/6ikhtCCxRt0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/BmDOfSM5W3E" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/CbVK4hPG3uA" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/PNP5-jzTnGY" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/X-GDLZkSAiM" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/YMieLeC5H9U" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/f-CsfDsGrNc" allowfullscreen></iframe>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/magnific-popup/magnific-popup.min.js"></script>
+    <script src="lib/sticky/sticky.js"></script>
+    <script src="contactform/contactform.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
