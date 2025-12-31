@@ -97,7 +97,8 @@
         <div class="timeline-container">
             <div class="timeline">
                 <ul>
-                    <li onclick="changeYear(2025)" id="y-2025" class="active">2025</li>
+                    <li onclick="changeYear(2026)" id="y-2026" class="active">2026</li>
+                    <li onclick="changeYear(2025)" id="y-2025">2025</li>
                     <li onclick="changeYear(2024)" id="y-2024">2024</li>
                 </ul>
             </div>
@@ -138,6 +139,15 @@
 <script src="js/main.js"></script>
 <script>
         const profiles = {
+            2026: [
+                {
+                    name: "Exciting Speakers Coming Soon!",
+                    role: "Stay Tuned for Big Announcements",
+                    description: "Our 2026 speaker lineup is currently under wraps, but we promise it's going to be incredible! Expect industry leaders, visionaries, and changemakers who will inspire and challenge the way we think about the future. Keep an eye on this space as we unveil our speakers one by one!",
+                    image: "img/media/cs.jpg"
+                }
+    
+            ],
             2025: [
                 /*{
                     name: "Exciting Speakers Coming Soon!",
@@ -297,7 +307,7 @@
                 profileContainer.innerHTML += profileHTML;
             });}
         document.addEventListener("DOMContentLoaded", function () {
-        changeYear(2025); // default year
+        changeYear(2026); // default year
 });
 </script>
 <script src="lib/jquery/jquery.min.js"></script>

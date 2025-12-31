@@ -25,66 +25,368 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Montserrat', 'Raleway', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 0, 0, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
 
         .main-content {
-            margin-top: 80px;
-            /* Adjust this value based on the height of your navbar */
+            position: relative;
+            z-index: 1;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h2 {
-            color: red;
-            font-size: 3rem;
+            color: #fff;
+            font-size: 4rem;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: bold !important;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; width: 120px; }
+            50% { opacity: 0.6; width: 180px; }
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* Timeline Navigation */
+        .timeline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0;
+            gap: 30px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+            z-index: 0;
+        }
+
+        .year-tab {
+            position: relative;
+            z-index: 1;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            backdrop-filter: blur(10px);
+        }
+
+        .year-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 0, 0, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .year-tab.active {
+            color: #fff;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            border-color: #ff0000;
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.4);
+        }
+
+        /* Video Grid */
+        .video-container {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 35px;
+            padding: 40px 0;
         }
 
-        .video-grid iframe {
+        .video-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+            animation: slideUp 0.6s ease backwards;
+        }
+
+        .video-wrapper:nth-child(1) { animation-delay: 0.1s; }
+        .video-wrapper:nth-child(2) { animation-delay: 0.2s; }
+        .video-wrapper:nth-child(3) { animation-delay: 0.3s; }
+        .video-wrapper:nth-child(4) { animation-delay: 0.4s; }
+        .video-wrapper:nth-child(5) { animation-delay: 0.5s; }
+        .video-wrapper:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .video-wrapper:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(255, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.4);
+        }
+
+        .video-wrapper:hover::before {
+            opacity: 1;
+        }
+
+        .video-wrapper iframe {
             width: 100%;
-            height: 280px;
+            height: 300px;
             border: none;
-            transition: transform 0.3s ease-in-out;
+            display: block;
         }
 
-        .video-grid iframe:hover {
-            transform: scale(1.02);
+        /* Coming Soon Section */
+        .coming-soon {
+            text-align: center;
+            padding: 120px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease;
+        }
+
+        .coming-soon-icon {
+            font-size: 5rem;
+            color: #ff0000;
+            margin-bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .coming-soon h3 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff 0%, #ff0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coming-soon p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            padding: 15px 35px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            border-radius: 50px;
+            color: #ff0000;
+            font-weight: 700;
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
             .container {
-                width: 90%;
-                padding: 30px 0;
+                padding: 0 20px;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .timeline {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .timeline::before {
+                width: 2px;
+                height: 150px;
+            }
+
+            .year-tab {
+                width: 200px;
+                text-align: center;
             }
 
             .video-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
 
-            .video-grid iframe {
+            .video-wrapper iframe {
                 height: 250px;
-                /* Adjusted for smaller screens */
             }
+
+            .coming-soon h3 {
+                font-size: 2rem;
+            }
+
+            .coming-soon p {
+                font-size: 1rem;
+            }
+
+            .coming-soon-icon {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
 
 <body id="body" name="body">
+    <div class="bg-animation"></div>
+    
     <div id="navbar-container"></div>
     <script>
         function loadNavbar() {
@@ -97,27 +399,22 @@
         }
         loadNavbar();
     </script>
+
     <div class="main-content">
         <div class="container">
-            <br>
-            <br>
-            <h2>Past Season Highlights</h2>
-            <br>
-            <br>
-            <br>
-            <br>
-            <section class="video-grid">
-                <iframe src="https://www.youtube.com/embed/m84SDEhsqX8" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/wpWRUJn0IpU" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/6NhL5s_JWD4" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/6ikhtCCxRt0" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/BmDOfSM5W3E" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/CbVK4hPG3uA" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/PNP5-jzTnGY" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/X-GDLZkSAiM" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/YMieLeC5H9U" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/f-CsfDsGrNc" allowfullscreen></iframe>
-            </section>
+            <div class="hero-section">
+                <h2>Past Season Highlights</h2>
+                <p class="subtitle">Relive the moments that inspired thousands</p>
+            </div>
+
+            <div class="timeline">
+                <div class="year-tab active" onclick="changeYear(2025)" id="y-2025">2025</div>
+                <div class="year-tab" onclick="changeYear(2024)" id="y-2024">2024</div>
+            </div>
+
+            <div class="video-container loading" id="video-container">
+                <!-- Videos will be loaded dynamically -->
+            </div>
         </div>
     </div>
 
@@ -133,6 +430,79 @@
     </script>
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    
+    <script>
+        const videos = {
+            2025: [
+                /*type: 'coming-soon',
+                title: "Something Amazing is Coming",
+                description: "Our 2025 TEDx event is set to feature groundbreaking talks from visionaries, innovators, and changemakers. The recordings are being carefully crafted to deliver the most impactful viewing experience. Stay tuned as we prepare to unveil stories that will challenge your thinking and inspire action."*/
+                "https://www.youtube.com/embed/8uM8Wgeqzpw",
+                "https://www.youtube.com/embed/alSn2GyFp1c",
+                "https://www.youtube.com/embed/89oXWhfoNdM",
+                "https://www.youtube.com/embed/tAokSm3pTI8",
+                "https://www.youtube.com/embed/ljrn-TMFhCQ",
+                "https://www.youtube.com/embed/tiQUP4Um1q0",
+                "https://www.youtube.com/embed/zcty4Aug0Ro",
+                "https://www.youtube.com/embed/iCbPzAEHQPI",
+                "https://www.youtube.com/embed/i7VfGanXVls",
+                "https://www.youtube.com/embed/VI7MOgk6UXE"
+            ],
+            2024: [
+                "https://www.youtube.com/embed/m84SDEhsqX8",
+                "https://www.youtube.com/embed/wpWRUJn0IpU",
+                "https://www.youtube.com/embed/6NhL5s_JWD4",
+                "https://www.youtube.com/embed/6ikhtCCxRt0",
+                "https://www.youtube.com/embed/BmDOfSM5W3E",
+                "https://www.youtube.com/embed/CbVK4hPG3uA",
+                "https://www.youtube.com/embed/PNP5-jzTnGY",
+                "https://www.youtube.com/embed/X-GDLZkSAiM",
+                "https://www.youtube.com/embed/YMieLeC5H9U",
+                "https://www.youtube.com/embed/f-CsfDsGrNc"
+            ]
+        };
+
+        function changeYear(year) {
+            document.querySelectorAll(".year-tab").forEach(tab => tab.classList.remove("active"));
+            document.getElementById(`y-${year}`).classList.add("active");
+
+            const videoContainer = document.getElementById("video-container");
+            videoContainer.style.opacity = "0";
+            
+            setTimeout(() => {
+                videoContainer.innerHTML = "";
+                const yearData = videos[year];
+
+                if (yearData.type === 'coming-soon') {
+                    const comingSoonHTML = `
+                        <div class="coming-soon">
+                            <div class="coming-soon-icon">🎬</div>
+                            <h3>${yearData.title}</h3>
+                            <p>${yearData.description}</p>
+                            <div class="coming-soon-badge">COMING SOON</div>
+                        </div>
+                    `;
+                    videoContainer.innerHTML = comingSoonHTML;
+                } else {
+                    const videoGridHTML = '<div class="video-grid">' +
+                        yearData.map((url, index) => `
+                            <div class="video-wrapper" style="animation-delay: ${index * 0.1}s">
+                                <iframe src="${url}" allowfullscreen></iframe>
+                            </div>
+                        `).join('') +
+                        '</div>';
+                    videoContainer.innerHTML = videoGridHTML;
+                }
+                
+                videoContainer.style.opacity = "1";
+            }, 300);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            changeYear(2025);
+        });
+    </script>
+
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/jquery/jquery-migrate.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
