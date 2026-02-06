@@ -11,11 +11,12 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700"
         rel="stylesheet">
+    <!-- Add better fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
         crossorigin="anonymous"></script>
-
 
     <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -40,18 +41,36 @@
         }
         loadNavbar();
     </script>
+    
     <!-- Video Section -->
     <section id="hero" class="video-section">
         <video autoplay loop muted playsinline class="background-video">
-            <source src="img/media/a5.mp4" type="video/mp4">
+            <source src="img/media/backgroundgif.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
         <!-- Text Content -->
         <div class="video-overlay">
-            <h1 class="text-white">ECHOES OF THE UNSAID</h1>
-            <p>The biggest TEDx event. Consisting of speakers from all over India. Get your ticket now!
-            </p>
+            <div class="title-wrapper">
+                <h1 class="main-title">
+                    <span class="letter-group">Tales</span>
+                    <span class="letter-group">That</span>
+                    <span class="letter-group">Transform</span>
+                </h1>
+                <div class="title-line"></div>
+            </div>
+            
+            <div class="subtitle-container">
+                <p class="subtitle">
+                    Join India's premier gathering of visionary thinkers at the most anticipated TEDx event
+                </p>
+                <div class="cta-wrapper">
+                    <a href="tickets.html" class="cta-link">
+                        <span class="cta-text">Secure Your Spot Today</span>
+                        <div class="cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -72,58 +91,225 @@
             height: 100%;
             object-fit: cover;
             transform: translate(-50%, -50%);
+            z-index: 1;
         }
 
-        /* Overlay Text */
+        /* Overlay Container */
         .video-overlay {
             position: absolute;
-            bottom: 50%;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1200px;
             text-align: center;
-            width: 100%;
-            max-width: 90vw;
-            /* Ensures it fits within screen */
-            padding: 0 20px;
-            /* Adds slight padding */
-            color: white;
-            font-family: Arial, sans-serif;
+            z-index: 2;
         }
 
-        .video-overlay h1 {
-            font-size: 5rem;
-            font-weight: bold;
+        /* Main Title Styling */
+        .title-wrapper {
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 5.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .letter-group {
+            display: block;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .letter-group:nth-child(1) {
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
             letter-spacing: 4px;
-            width: 100%;
-            white-space: nowrap;
-            /* Prevents line breaks */
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .video-overlay p {
-            font-size: 2.5rem;
-            margin-top: 10px;
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .letter-group:nth-child(2) {
+            color: #ff2b2b;
+            font-size: 4.8rem;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(255, 43, 43, 0.4);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .video-overlay h1 {
-                font-size: 2.5rem;
-                white-space: normal;
-                /* Allows wrapping for smaller screens */
+        .letter-group:nth-child(3) {
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .letter-group:nth-child(3)::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff2b2b, transparent);
+        }
+
+        .title-line {
+            width: 180px;
+            height: 3px;
+            background: #ff2b2b;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 43, 43, 0.5);
+        }
+
+        .title-line::before,
+        .title-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: #ff2b2b;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .title-line::before {
+            left: -20px;
+        }
+
+        .title-line::after {
+            right: -20px;
+        }
+
+        /* Subtitle Styling */
+        .subtitle-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 43, 43, 0.1);
+            padding: 18px 35px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 43, 43, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-wrapper:hover {
+            background: rgba(255, 43, 43, 0.2);
+            border-color: rgba(255, 43, 43, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 43, 43, 0.2);
+        }
+
+        .cta-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .cta-arrow {
+            font-size: 1.8rem;
+            color: #ff2b2b;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-title {
+                font-size: 4.5rem;
             }
+            
+            .letter-group:nth-child(2) {
+                font-size: 4rem;
+            }
+            
+            .subtitle {
+                font-size: 1.6rem;
+            }
+        }
 
-            .video-overlay p {
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .letter-group:nth-child(2) {
+                font-size: 3.2rem;
+            }
+            
+            .letter-group {
+                letter-spacing: 2px;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+                padding: 0 20px;
+            }
+            
+            .cta-wrapper {
+                padding: 15px 25px;
+            }
+            
+            .cta-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.8rem;
+            }
+            
+            .letter-group:nth-child(2) {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
                 font-size: 1.2rem;
-                white-space: normal;
+                padding: 0 15px;
+            }
+            
+            .cta-wrapper {
+                padding: 12px 20px;
+            }
+            
+            .cta-text {
+                font-size: 1rem;
+            }
+            
+            .title-line {
+                width: 120px;
             }
         }
     </style>
+    
     <!-- Countdown Section -->
     <section id="countdown-section">
         <div class="countdown-container">
@@ -145,7 +331,9 @@
                     <span class="label">SECONDS</span>
                 </div>
             </div>
-            <h1 class="event-date text-white">Feb 21<span class="superscript">ST</span> 2026</h1>
+            <h1 class="event-date text-white">
+            Feb 21<sup class="superscript">st</sup> 2026
+        </h1>
             <p class="venue">
                 <a href="https://www.google.com/maps/place/BVRIT+Hyderabad+College+of+Engineering+for+Women/@17.5346602,78.3478872,14.01z/data=!4m6!3m5!1s0x3bcb8defd4fe2b81:0x64cfbb18950c8603!8m2!3d17.5269967!4d78.3713723!16s%2Fg%2F1hc2d6krn?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoASAFQAw%3D%3D" 
                    target="_blank" 
@@ -324,7 +512,7 @@
     <!-- Poster Section -->
     <section id="poster-section">
         <div class="image-container">
-            <img src="img/poster/tedx_poster_hd.png" alt="TEDx poster">
+            <img src="img/poster/poster_2026.jpeg" alt="TEDx poster">
         </div>
     </section>
     
@@ -353,37 +541,51 @@
     <!-- WHY TEDx Section -->
     <section id="why-tedx">
         <div class="container">
-            <h2 class="section-title"><span class="highlight">WHY TEDx?</span></h2>
-            <p class="text">
-                TED, which stands for <span class="highlight">Technology, Entertainment, and Design</span>, is a
-                platform for infinite ideas. As an international nonprofit organization, TED thrives on creativity,
-                embracing diverse perspectives, and giving a voice to every idea—big or small. TEDx provides a stage for
-                speakers of all styles, backgrounds, and languages, encouraging them to share
-                insights ranging from groundbreaking business innovations to deeply personal life experiences.
-            </p>
+            <!-- WHY TEDx Block -->
+            <div class="poster-block">
+                <div class="corner-accent top-left"></div>
+                <div class="corner-accent top-right"></div>
+                <div class="corner-accent bottom-left"></div>
+                <div class="corner-accent bottom-right"></div>
+                
+                <h2 class="section-title"><span class="highlight">WHY TEDx?</span></h2>
+                <p class="text">
+                    TED, which stands for <span class="highlight">Technology, Entertainment, and Design</span>, is a
+                    platform for infinite ideas. As an international nonprofit organization, TED thrives on creativity,
+                    embracing diverse perspectives, and giving a voice to every idea—big or small. TEDx provides a stage for
+                    speakers of all styles, backgrounds, and languages, encouraging them to share
+                    insights ranging from groundbreaking business innovations to deeply personal life experiences.
+                </p>
+            </div>
 
-            <h2 class="section-title"><span class="highlight">WE THE BVRITH...</span></h2>
-            <p class="text">
-                In a world woven with countless perspectives, TEDxBVRITH stands as a platform where imagination meets
-                expression. Our speakers break open the caps of their minds, unleashing thoughts that challenge norms,
-                spark inspiration, and encourage fearless exploration.
-                At TEDxBVRITH, we believe in fostering that courage—the courage to challenge the unknown, to inspire
-                others, and to create an impact that lasts beyond the stage.
-            </p>
+            <!-- WHY BVRIT Block -->
+            <div class="poster-block">
+                <div class="corner-accent top-left"></div>
+                <div class="corner-accent top-right"></div>
+                <div class="corner-accent bottom-left"></div>
+                <div class="corner-accent bottom-right"></div>
+                
+                <h2 class="section-title"><span class="highlight">WE THE BVRITH...</span></h2>
+                <p class="text">
+                    In a world woven with countless perspectives, TEDxBVRITH stands as a platform where imagination meets
+                    expression. Our speakers break open the caps of their minds, unleashing thoughts that challenge norms,
+                    spark inspiration, and encourage fearless exploration.
+                    At TEDxBVRITH, we believe in fostering that courage—the courage to challenge the unknown, to inspire
+                    others, and to create an impact that lasts beyond the stage.
+                </p>
+            </div>
         </div>
     </section>
 
     <style>
         #why-tedx {
-            background: black;
+            background: #0a0a0a;
             color: white;
             padding: 100px 20px;
             position: relative;
             text-align: left;
             overflow: hidden;
         }
-
-        
 
         .container {
             position: relative;
@@ -392,30 +594,127 @@
             margin: auto;
         }
 
+        .poster-block {
+            position: relative;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 80px 70px; /* SIGNIFICANTLY increased padding */
+            margin-bottom: 90px; /* Increased margin between boxes */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .poster-block:hover {
+            border-color: rgba(255, 0, 0, 0.3);
+            box-shadow: 0 12px 40px rgba(255, 0, 0, 0.15);
+        }
+
+        .corner-accent {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .corner-accent.top-left {
+            top: -1px;
+            left: -1px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.top-right {
+            top: -1px;
+            right: -1px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.bottom-left {
+            bottom: -1px;
+            left: -1px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-accent.bottom-right {
+            bottom: -1px;
+            right: -1px;
+            border-left: none;
+            border-top: none;
+        }
+
         .section-title {
-            font-size: 2.5rem;
+            font-size: 4.5rem !important; /* DRAMATICALLY increased font size */
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 40px !important;
+            letter-spacing: 2px;
         }
 
         .highlight {
-            color: red;
+            color: #eb0028;
         }
 
         .text {
-            font-size: 2rem;
+            font-size: 2rem !important; /* DRAMATICALLY increased font size */
             line-height: 1.8;
             text-align: justify;
-            opacity: 0.6;
-            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .poster-block {
+                padding: 60px 40px; /* Adjusted for mobile */
+                margin-bottom: 70px;
+            }
+
+            .section-title {
+                font-size: 3.5rem !important; /* Increased for mobile */
+                margin-bottom: 30px !important;
+            }
+
+            .text {
+                font-size: 1.6rem !important; /* Increased for mobile */
+                line-height: 1.7;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .poster-block {
+                padding: 50px 30px;
+                margin-bottom: 60px;
+            }
+            
+            .section-title {
+                font-size: 3rem !important;
+                margin-bottom: 25px !important;
+            }
+            
+            .text {
+                font-size: 1.4rem !important;
+                line-height: 1.6;
+            }
         }
     </style>
 
     <!-- Sponsors Section -->
     <section id="sponsors" style="background-color: black; padding: 50px 0; overflow: hidden; white-space: nowrap;">
         <div class="container">
-            <h2 class="text-center text-red font-weight-bold">SPONSORS</h2>
-            <br><br><br>
+            <!-- RESTORED the section header divider -->
+            <div class="section-header-divider">
+                <div class="header-line"></div>
+                <div class="header-diamond"></div>
+                <div class="header-line"></div>
+            </div>
+            <h2 class="text-center text-red font-weight-bold" style="font-size: 3.5rem; margin-bottom: 40px; letter-spacing: 2px;">SPONSORS</h2>
+            <div class="section-header-divider">
+                <div class="header-line"></div>
+                <div class="header-diamond"></div>
+                <div class="header-line"></div>
+            </div>
+            <br><br>
             <div class="marquee-wrapper">
                 <div class="marquee">
                     <div class="sponsor-announcement">
@@ -441,12 +740,22 @@
             </div>
         </div>
     </section>
+
     <section id="media" style="background-color: black; padding: 50px 0; overflow: hidden; white-space: nowrap;">
         <div class="container">
-            <h2 class="text-center text-red font-weight-bold">MEDIA</h2>
-            <br>
-            <br>
-            <br>
+            <!-- RESTORED the section header divider -->
+            <div class="section-header-divider">
+                <div class="header-line"></div>
+                <div class="header-diamond"></div>
+                <div class="header-line"></div>
+            </div>
+            <h2 class="text-center text-red font-weight-bold" style="font-size: 3.5rem; margin-bottom: 40px; letter-spacing: 2px;">MEDIA</h2>
+            <div class="section-header-divider">
+                <div class="header-line"></div>
+                <div class="header-diamond"></div>
+                <div class="header-line"></div>
+            </div>
+            <br><br>
             <div class="marquee-wrapper">
                 <div class="marquee">
                     <img src="img/media/BVRITH CLG pic 2.jpg" alt="Media Image 1">
@@ -468,6 +777,30 @@
     </section>
 
     <style>
+        /* RESTORED the section header divider styles */
+        .section-header-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0 20px;
+        }
+
+        .header-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.25), transparent);
+            max-width: 250px;
+        }
+
+        .header-diamond {
+            width: 8px;
+            height: 8px;
+            background: #eb0028;
+            transform: rotate(45deg);
+            margin: 0 15px;
+            box-shadow: 0 0 10px rgba(235, 0, 40, 0.6);
+        }
+
         .marquee-wrapper {
             display: flex;
             overflow: hidden;
@@ -484,7 +817,6 @@
 
         .marquee img {
             width: auto;
-            /* Increased width */
             height: 400px;
             border-radius: 10px;
         }
@@ -496,6 +828,32 @@
 
             to {
                 transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-line {
+                max-width: 100px;
+            }
+            
+            #sponsors h2,
+            #media h2 {
+                font-size: 2.8rem !important;
+            }
+            
+            .marquee img {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #sponsors h2,
+            #media h2 {
+                font-size: 2.2rem !important;
+            }
+            
+            .marquee img {
+                height: 250px;
             }
         }
     </style>
