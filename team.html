@@ -163,21 +163,24 @@
             transform: translateY(0);
         }
 
-        /* Enhanced Card styles */
+        /* Enhanced Card styles - COMPLETELY REDESIGNED */
         .card {
             position: relative;
             overflow: hidden;
             border: none !important;
             background: none;
-            margin-bottom: 30px;
+            margin-bottom: 50px; /* Increased margin to accommodate text below */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border-radius: 0;
-            opacity: 1; /* CHANGED: Always visible */
-            transform: translateY(0); /* CHANGED: No initial translate */
+            opacity: 1;
+            transform: translateY(0);
             max-width: 350px;
             margin-left: auto;
             margin-right: auto;
             animation-fill-mode: forwards;
+            display: flex;
+            flex-direction: column;
+            height: auto;
         }
 
         .card.animated {
@@ -203,77 +206,134 @@
             object-position: center;
             display: block;
             transition: transform 0.5s ease;
+            border-radius: 4px 4px 0 0;
         }
 
         .card:hover .card-img-top {
             transform: scale(1.05);
         }
 
-        /* Card overlay styles */
-        .card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, 
-                rgba(0, 0, 0, 0.9) 0%, 
-                rgba(0, 0, 0, 0.7) 50%, 
-                transparent 100%);
-            color: white;
-            padding: 25px 15px 15px;
+        /* Professional Card Content BELOW the image */
+        .card-content {
+            position: relative;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.3s ease;
-            opacity: 1;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(230, 43, 30, 0.2);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            margin-top: -1px;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover .card-content {
+            background: rgba(30, 30, 30, 0.95);
+            border-color: rgba(230, 43, 30, 0.4);
+            box-shadow: 0 15px 40px rgba(230, 43, 30, 0.2);
         }
 
         .card-title {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 8px;
             color: white;
             font-family: 'Montserrat', sans-serif;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e62b1e, #ff6b6b);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(230, 43, 30, 0.3);
         }
 
         .card-text {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: #e62b1e;
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .card-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: #e62b1e;
         }
 
         .card {
             margin: 0 15px 30px 15px;
         }
 
-        /* Social icons styles */
+        /* Professional Social Icons */
         .social {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social a {
             color: white;
             text-decoration: none;
-            font-size: 1.3rem;
-            width: 40px;
-            height: 40px;
+            font-size: 1.2rem;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #e62b1e, #ff6b6b);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social a i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social a:hover::before {
+            opacity: 1;
         }
 
         .social a:hover {
-            color: #e62b1e;
-            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(230, 43, 30, 0.4);
         }
 
         /* Section Headers */
@@ -407,6 +467,12 @@
             .card-img-top {
                 height: 300px;
             }
+            .card-title {
+                font-size: 1.3rem;
+            }
+            .card-text {
+                font-size: 0.95rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -421,6 +487,18 @@
             }
             .card-img-top {
                 height: 250px;
+            }
+            .card-content {
+                padding: 20px 15px;
+            }
+            .social a {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+            .role-badge {
+                font-size: 0.8rem;
+                padding: 5px 15px;
             }
         }
 
@@ -486,8 +564,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/PrincipalMaam.png" alt="Dr. KVN Sunitha">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Dr. KVN Sunitha</h5>
+                                <div class="role-badge">PRINCIPAL</div>
                                 <p class="card-text">Principal</p>
                                 <div class="social">
                                     <a href="https://instagram.com/sunithakvn?igshid=MTNiYzNiMjkzYQ==" target="_blank">
@@ -504,8 +583,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/vice principal sir.png" alt="Dr. Chava Sunil Kumar">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Dr. Chava Sunil Kumar</h5>
+                                <div class="role-badge">VICE PRINCIPAL</div>
                                 <p class="card-text">Vice Principal</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/ursunil259/" target="_blank">
@@ -522,8 +602,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/ITHOD.jpg" alt="Dr. Aruna Rao S L">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Dr. Aruna Rao S L</h5>
+                                <div class="role-badge">HEAD OF DEPARTMENT</div>
                                 <p class="card-text">HOD-IT</p>
                                 <div class="social">
                                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -538,8 +619,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/tara sir.jpg" alt="Tara Sai Kumar">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Tara Sai Kumar</h5>
+                                <div class="role-badge">FACULTY COORDINATOR</div>
                                 <p class="card-text">Faculty Co-ordinator</p>
                                 <div class="social">
                                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -552,8 +634,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/Anusha Sridhar_Organiser.jpeg" alt="Anusha Sridhar">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Anusha Sridhar</h5>
+                                <div class="role-badge">ORGANIZER</div>
                                 <p class="card-text">Licensee | Organizer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/anu_sridhar03/?__pwa=1" target="_blank">
@@ -570,8 +653,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/S. Sai Sruthi_Co-Organizer.JPG" alt="S. Sai Sruthi">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">S. Sai Sruthi</h5>
+                                <div class="role-badge">CO-ORGANIZER</div>
                                 <p class="card-text">Co Organizer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/sruthiii.varma?igsh=YXhpeGk3OXJiMDcz&utm_source=qr" target="_blank">
@@ -590,8 +674,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/CRF001_AKASHMALLAREDDY_PHOTO.jpg" alt="Mr. M. D. N. Akash">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Mr. M. D. N. Akash</h5>
+                                <div class="role-badge">CURATOR</div>
                                 <p class="card-text">Curator</p>
                                 <div class="social">
                                     <a href="https://instagram.com/akash_mallareddy" target="_blank">
@@ -619,9 +704,10 @@
                     <!-- Core Team Members -->
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/V. Akshaya Reddy_webdev.jpeg" alt="V. Akshaya Reddy">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/V. Akshaya Reddy_Team lead(Wed Development).png" alt="V. Akshaya Reddy">
+                            <div class="card-content">
                                 <h5 class="card-title">V. Akshaya Reddy</h5>
+                                <div class="role-badge">TEAM LEAD</div>
                                 <p class="card-text">Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/akshaya_vazrala" target="_blank">
@@ -638,8 +724,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/M Sri Sevitha_Web Development .jpg" alt="M. Sri Sevitha">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">M. Sri Sevitha</h5>
+                                <div class="role-badge">CO-LEAD</div>
                                 <p class="card-text">Co Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/sevitha_26?igsh=cjVrenlmZmxsaWx2" target="_blank">
@@ -656,8 +743,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/V.Bhavitha_webdev.jpg" alt="Bhavitha .V">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">Bhavitha. V</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -671,9 +759,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Bhavigna.V_webdev.jpg" alt="Bhavigna .V">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Bhavigna_teammember.png" alt="Bhavigna .V">
+                            <div class="card-content">
                                 <h5 class="card-title">Bhavigna .V</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -696,9 +785,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Megna_Production.png" alt="Megna Varma ">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Megna Varma_ P&C Lead.jpg" alt="Megna Varma ">
+                            <div class="card-content">
                                 <h5 class="card-title">Megna Varma</h5>
+                                <div class="role-badge">TEAM LEAD</div>
                                 <p class="card-text">Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/datla.megnavarma31?igsh=MXhrZ3gyZmk5ZWF0eQ==">
@@ -715,8 +805,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/Ashwitha_production.png" alt="T. Ashwitha Priya ">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">T. Ashwitha Priya </h5>
+                                <div class="role-badge">CO-LEAD</div>
                                 <p class="card-text">Co-Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/ashwitha_19_">
@@ -732,9 +823,10 @@
                     
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Ch. Harika_production and communication.jpg" alt="Ch. Harika Reddy">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Ch Harika_ team member.png" alt="Ch. Harika Reddy">
+                            <div class="card-content">
                                 <h5 class="card-title">Ch. Harika Reddy</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/harikaa.22?igsh=dWt2N2t2dTN0Mzli&utm_source=qr" target="_blank">
@@ -752,9 +844,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Sania Mubeen _Production&Communication.jpg" alt="Sania Mubeen">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/SaniaMubeen_productionandcommunication.JPG" alt="Sania Mubeen">
+                            <div class="card-content">
                                 <h5 class="card-title">Sania Mubeen</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/saniaamubeen/" target="_blank">
@@ -770,9 +863,10 @@
 
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/IMG_20250425_084212.jpg" alt="Mahathi patak">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Mahathi patak _P&C team member.png" alt="Mahathi patak">
+                            <div class="card-content">
                                 <h5 class="card-title">Mahathi patak</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/_mahii._p/" target="_blank">
@@ -787,9 +881,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Sowgandhika_Production and Communication.jpg" alt="K Sowgandhika">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Sowgandhika_production and communication.png" alt="K Sowgandhika">
+                            <div class="card-content">
                                 <h5 class="card-title">K Sowgandhika</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/sowgandhikaaa____?igsh=MTQ1bHhvcTg3NDBqbg==" target="_blank">
@@ -817,8 +912,9 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img class="card-img-top" src="img/team_pics/E.Varshini_Hospitality.png" alt="E. Varshini">
-                            <div class="card-overlay">
+                            <div class="card-content">
                                 <h5 class="card-title">E. Varshini</h5>
+                                <div class="role-badge">TEAM LEAD</div>
                                 <p class="card-text">Lead</p>
                                 <div class="social">
                                     <a href="https://www.linkedin.com/in/varshini-erroju-70ab96360/">
@@ -834,9 +930,10 @@
                     
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Jyothi Akshaya _hospitality.jpg" alt="K.Jyothi Akshaya">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Jyothi Akshaya _co-lead.png" alt="K.Jyothi Akshaya">
+                            <div class="card-content">
                                 <h5 class="card-title">K.Jyothi Akshaya</h5>
+                                <div class="role-badge">CO-LEAD</div>
                                 <p class="card-text">Co-Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/akshayaaa_1616?igsh=MWVxdWdmd3d0dmltcg==">
@@ -852,9 +949,10 @@
                     
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Paladugu Rishika Chowdary _Hospitality.jpg" alt="P. Rishika Chowdary">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Paladugu Rishika Chowdary_team member.png" alt="P. Rishika Chowdary">
+                            <div class="card-content">
                                 <h5 class="card-title">P. Rishika Chowdary</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/_paladugurishika_/" target="_blank">
@@ -872,9 +970,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/K.Akshitha_Hospitality.jpeg" alt="K.Akshitha">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/K.AKSHITHA_TeamMember.png" alt="K.Akshitha">
+                            <div class="card-content">
                                 <h5 class="card-title">K.Akshitha</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="#" target="_blank">
@@ -890,9 +989,10 @@
 
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Renuka Kancharapu_Hospitality.jpeg" alt="Renuka Kanckarapu">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/K.Renuka_Teammember.png" alt="Renuka Kanckarapu">
+                            <div class="card-content">
                                 <h5 class="card-title">Renuka Kanckarapu</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="#" target="_blank">
@@ -907,9 +1007,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Renuka beetla hospitality .png" alt="Renuka beetla">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Renuka Beetla- Team member.jpg" alt="Renuka beetla">
+                            <div class="card-content">
                                 <h5 class="card-title">Renuka Beetla</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/rainsss23?igsh=MXE4NTQyaTRncDR4YQ==" target="_blank">
@@ -936,9 +1037,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/S.Sathvika_Marketing Lead .jpg" alt="S. Sathvika">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/Sathvika Singaram_Marketing Team_Lead.png" alt="S. Sathvika">
+                            <div class="card-content">
                                 <h5 class="card-title">S. Sathvika</h5>
+                                <div class="role-badge">TEAM LEAD</div>
                                 <p class="card-text">Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/sathvikawwww/?next=%2F">
@@ -954,9 +1056,10 @@
                     
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Syamala Purimetla_Marketing Team.jpeg" alt="P. Syamala">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/P.Syamala_co-lead(Marketing).jpeg" alt="P. Syamala">
+                            <div class="card-content">
                                 <h5 class="card-title">P. Syamala</h5>
+                                <div class="role-badge">CO-LEAD</div>
                                 <p class="card-text">Co-Lead</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/syamala_016?igsh=MTQ4cHB1c2xmcG5pOQ%3D%3D&utm_source=qr" target="_blank">
@@ -972,9 +1075,10 @@
                     
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/K.Varsha_Marketing.jpeg" alt="K. Varsha">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/K.Varsha_TeamMember.png" alt="K. Varsha">
+                            <div class="card-content">
                                 <h5 class="card-title">K. Varsha</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/varsha_200529/" target="_blank">
@@ -992,9 +1096,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/Sai Srinidhi_Marketing_Team.jpg" alt="R Sai Srinidhi">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/R.Sai Srinidhi_TeamMember.JPG" alt="R Sai Srinidhi">
+                            <div class="card-content">
                                 <h5 class="card-title">R Sai Srinidhi</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="https://www.instagram.com/_saisrinidhi?igsh=ZXVkcWFrMDhuc3Iz" target="_blank">
@@ -1009,9 +1114,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/D. Akshaya_marketing.jpg" alt="D. Akshaya">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/D. Akshaya_Team Member.png" alt="D. Akshaya">
+                            <div class="card-content">
                                 <h5 class="card-title">D. Akshaya</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="#" target="_blank">
@@ -1026,9 +1132,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="img/team_pics/CH.Nithisha Devi_marketing.jpg" alt="CH Nithisha Devi">
-                            <div class="card-overlay">
+                            <img class="card-img-top" src="img/team_pics/CH.Nithisha Devi_TeamMember.png" alt="CH Nithisha Devi">
+                            <div class="card-content">
                                 <h5 class="card-title">CH Nithisha Devi</h5>
+                                <div class="role-badge">VOLUNTEER</div>
                                 <p class="card-text">Volunteer</p>
                                 <div class="social">
                                     <a href="#" target="_blank">
