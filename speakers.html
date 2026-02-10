@@ -60,6 +60,13 @@
             transform: scale(1.02);
         }
 
+        /* Add text justification for speaker descriptions */
+        .profile p {
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.6;
+        }
+
         @media (max-width: 768px) {
             .container {
                 width: 90%;
@@ -140,12 +147,6 @@
 <script>
         const profiles = {
             2026: [
-                /*{
-                    name: "Exciting Speakers Coming Soon!",
-                    role: "Stay Tuned for Big Announcements",
-                    description: "Our 2026 speaker lineup is currently under wraps, but we promise it's going to be incredible! Expect industry leaders, visionaries, and changemakers who will inspire and challenge the way we think about the future. Keep an eye on this space as we unveil our speakers one by one!",
-                    image: "img/media/cs.jpg"
-                }*/
                 {
                     "name": "Vanam Tejasvi",
                     "role": "Founder & CEO, Force Amplify",
@@ -209,12 +210,6 @@
     
             ],
             2025: [
-                /*{
-                    name: "Exciting Speakers Coming Soon!",
-                    role: "Stay Tuned for Big Announcements",
-                    description: "Our 2025 speaker lineup is currently under wraps, but we promise it's going to be incredible! Expect industry leaders, visionaries, and changemakers who will inspire and challenge the way we think about the future. Keep an eye on this space as we unveil our speakers one by one!",
-                    image: "img/media/cs.jpg"
-                },*/
                 {
                     "name": "Dr. Shriram Darbha",
                     "role": "Founder & Chief Curator, IKSA - Indian Knowledge Studies Academy",
